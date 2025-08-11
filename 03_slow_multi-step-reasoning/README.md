@@ -1,0 +1,1 @@
+Some queries take 4× longer. Find where.
