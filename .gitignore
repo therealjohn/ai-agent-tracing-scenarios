@@ -58,3 +58,5 @@ otel-*.json
 Thumbs.db
 
 .env
+__azurite_db_table__.json
+AzuriteConfig
