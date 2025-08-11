@@ -25,7 +25,16 @@ if __name__ == "__main__":
     # Intentionally low output tokens to trigger length truncation
     resp = client.complete(model=MODEL, messages=messages, max_output_tokens=50)
     choice = resp.choices[0]
+    
+    content = choice.message.content
+    # Handle both string and list content formats
+    if isinstance(content, str):
+        text = content
+    else:
+        # If content is a list, get the text from the first item
+        text = content[0].text if hasattr(content[0], 'text') else str(content[0])
+    
     print(json.dumps({
         "finish_reason": getattr(choice, "finish_reason", "unknown"),
-        "text": choice.message.content[0].text
+        "text": text
     }, indent=2))

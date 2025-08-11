@@ -69,7 +69,15 @@ def run(query: str):
         messages=[*messages, msg],
         tool_results=tool_outputs
     )
-    return follow.choices[0].message.content[0].text
+    
+    content = follow.choices[0].message.content
+    
+    # Handle both string and list content formats
+    if isinstance(content, str):
+        return content
+    else:
+        # If content is a list, get the text from the first item
+        return content[0].text if hasattr(content[0], 'text') else str(content[0])
 
 if __name__ == "__main__":
     print(run("What's the weather in New York?"))

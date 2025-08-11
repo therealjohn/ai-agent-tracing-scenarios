@@ -19,13 +19,23 @@ client = ChatCompletionsClient(endpoint=ENDPOINT, credential=AzureKeyCredential(
 
 def route(question: str) -> str:
     with tracer.start_span("router.classify"):
-        msg = client.complete(
+        resp = client.complete(
             model=MODEL,
             messages=[
                 SystemMessage("Return ONLY one token: FINANCE or TECH."),
                 UserMessage(question)
             ],
-        ).choices[0].message.content[0].text.strip()
+        )
+        
+        content = resp.choices[0].message.content
+        # Handle both string and list content formats
+        if isinstance(content, str):
+            msg = content.strip()
+        else:
+            # If content is a list, get the text from the first item
+            text = content[0].text if hasattr(content[0], 'text') else str(content[0])
+            msg = text.strip()
+            
         return msg
 
 def handle(question: str):

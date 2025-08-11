@@ -19,7 +19,15 @@ tracer = get_tracer("scenario03")
 client = ChatCompletionsClient(endpoint=ENDPOINT, credential=AzureKeyCredential(KEY))
 
 def llm(messages):
-    return client.complete(model=MODEL, messages=messages).choices[0].message.content[0].text
+    response = client.complete(model=MODEL, messages=messages)
+    content = response.choices[0].message.content
+    
+    # Handle both string and list content formats
+    if isinstance(content, str):
+        return content
+    else:
+        # If content is a list, get the text from the first item
+        return content[0].text if hasattr(content[0], 'text') else str(content[0])
 
 def planner(task: str):
     with tracer.start_span("agent.planner"):

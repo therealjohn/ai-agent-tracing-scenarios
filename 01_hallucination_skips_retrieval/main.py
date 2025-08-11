@@ -52,7 +52,14 @@ def answer_question(topic: str):
         messages.append(AssistantMessage(f"[retrieved]\n{kb_snippet}"))
 
     resp = llm(messages)
-    content = resp.choices[0].message.content[0].text  # minimal extraction
+    content = resp.choices[0].message.content
+    
+    # Handle both string and list content formats
+    if isinstance(content, str):
+        text = content
+    else:
+        # If content is a list, get the text from the first item
+        text = content[0].text if hasattr(content[0], 'text') else str(content[0])
     return {"use_kb": use_kb, "kb_snippet": kb_snippet, "answer": content}
 
 if __name__ == "__main__":
