@@ -5,6 +5,8 @@ from azure.core.credentials import AzureKeyCredential
 from pathlib import Path
 import sys
 
+from dotenv import load_dotenv; load_dotenv()
+
 sys.path.append(str(Path(__file__).resolve().parents[1] / "_shared"))
 from tracing import init_tracing, get_tracer
 
