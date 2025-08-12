@@ -8,8 +8,8 @@ from azure.core.credentials import AzureKeyCredential
 from dotenv import load_dotenv; load_dotenv()
 
 def main():
-    endpoint = os.environ["AZURE_AI_CHAT_ENDPOINT"]
-    key = os.environ["AZURE_AI_CHAT_KEY"]
+    endpoint = os.environ["MODEL_ENDPOINT"]
+    key = os.environ["API_CREDENTIAL_TOKEN"]
     model = os.getenv("MODEL_NAME")  # optional in some setups
 
     client = ChatCompletionsClient(endpoint=endpoint, credential=AzureKeyCredential(key))

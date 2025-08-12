@@ -1,40 +1,67 @@
-import os, json
+import os
+import json
+import sys
+from pathlib import Path
+
 from azure.ai.inference import ChatCompletionsClient
 from azure.ai.inference.models import SystemMessage, UserMessage
 from azure.core.credentials import AzureKeyCredential
-from pathlib import Path
-import sys
-from dotenv import load_dotenv; load_dotenv()
+from dotenv import load_dotenv
+from opentelemetry import trace
 
-sys.path.append(str(Path(__file__).resolve().parents[1] / "_shared"))
-from tracing import init_tracing, get_tracer
+# Load environment and setup path
+load_dotenv()
+sys.path.append(str(Path(__file__).resolve().parents[1]))
+from _shared.tracing import add_choice_event, add_gen_ai_event, init_tracing, get_tracer
 
-ENDPOINT = os.environ["AZURE_AI_CHAT_ENDPOINT"]
-KEY = os.environ["AZURE_AI_CHAT_KEY"]
+# Configuration
+ENDPOINT = os.environ["MODEL_ENDPOINT"]
+KEY = os.environ["API_CREDENTIAL_TOKEN"]
 MODEL = os.getenv("MODEL_NAME")
 
+# Initialize tracing
 init_tracing("scenario04")
 tracer = get_tracer("scenario04")
 client = ChatCompletionsClient(endpoint=ENDPOINT, credential=AzureKeyCredential(KEY))
 
-if __name__ == "__main__":
+@tracer.start_as_current_span("scenario_04")
+def main():
+    current_span = trace.get_current_span()
+    current_span.set_attribute("scenario.name", "truncated_responses")
+    current_span.set_attribute("max_output_tokens", 50)
+    
+    query = "Summarize the benefits of CI/CD and trunk-based development."
     messages = [
         SystemMessage("You write detailed summaries of 400-600 words."),
-        UserMessage("Summarize the benefits of CI/CD and trunk-based development.")
+        UserMessage(query)
     ]
+    
+    # Add user message event
+    add_gen_ai_event(current_span, "gen_ai.user.message", "user", query)
+    
     # Intentionally low output tokens to trigger length truncation
     resp = client.complete(model=MODEL, messages=messages, max_output_tokens=50)
     choice = resp.choices[0]
     
     content = choice.message.content
     # Handle both string and list content formats
-    if isinstance(content, str):
-        text = content
-    else:
-        # If content is a list, get the text from the first item
-        text = content[0].text if hasattr(content[0], 'text') else str(content[0])
+    text = content if isinstance(content, str) else (
+        content[0].text if hasattr(content[0], 'text') else str(content[0])
+    )
     
-    print(json.dumps({
-        "finish_reason": getattr(choice, "finish_reason", "unknown"),
+    # Add choice event
+    add_choice_event(current_span, content)
+    
+    # Log truncation information
+    finish_reason = getattr(choice, "finish_reason", "unknown")
+    current_span.set_attribute("finish_reason", finish_reason)
+    current_span.set_attribute("response_truncated", finish_reason == "length")
+    
+    return {
+        "finish_reason": finish_reason,
         "text": text
-    }, indent=2))
+    }
+
+if __name__ == "__main__":
+    result = main()
+    print(json.dumps(result, indent=2))
