@@ -102,8 +102,8 @@ def run(query: str):
 
     # Add choice event
     add_choice_event(current_span, content)
-    
-    return str(content[0])
+    current_span.set_attribute("gen_ai.usage.total_tokens", follow.usage.total_tokens)
+    return str(content)
 
 if __name__ == "__main__":
     

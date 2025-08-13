@@ -74,13 +74,11 @@ def analyze(doc: str):
     )
     
     content = msg.choices[0].message.content
-    # Handle both string and list content formats
-    result = content if isinstance(content, str) else (
-        content[0].text if hasattr(content[0], 'text') else str(content[0])
-    )
     
     add_choice_event(current_span, content)
-    return result
+    current_span.set_attribute("gen_ai.usage.total_tokens", msg.usage.total_tokens)
+    
+    return content
 
 if __name__ == "__main__":
     result = analyze("dummy")

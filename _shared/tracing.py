@@ -27,6 +27,7 @@ def init_tracing(service_name: str = "ai-agent-scenarios"):
     # This enables capturing prompt and completion content in traces
     os.environ["AZURE_TRACING_GEN_AI_CONTENT_RECORDING_ENABLED"] = "true"
     os.environ["AZURE_SDK_TRACING_IMPLEMENTATION"] = "opentelemetry"
+    os.environ["OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT"] = "true"
     
     # Configure resource with service name and version info
     resource = Resource(attributes={

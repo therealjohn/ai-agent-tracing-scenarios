@@ -87,6 +87,7 @@ def answer_question(topic: str):
     
     # Add choice event
     add_choice_event(current_span, content)
+    current_span.set_attribute("gen_ai.usage.total_tokens", resp.usage.total_tokens)
     
     return {"use_kb": use_kb, "kb_snippet": kb_snippet, "answer": content}
 

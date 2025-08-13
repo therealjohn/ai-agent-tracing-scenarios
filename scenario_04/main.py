@@ -45,13 +45,14 @@ def main():
     
     # Add choice event
     add_choice_event(current_span, content)
-    
+    current_span.set_attribute("gen_ai.usage.total_tokens", resp.usage.total_tokens)
+
     # Log truncation information
     finish_reason = getattr(choice, "finish_reason", "unknown")
     
     return {
         "finish_reason": finish_reason,
-        "text": str(content[0])
+        "text": str(content)
     }
 
 if __name__ == "__main__":
