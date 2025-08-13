@@ -18,7 +18,7 @@ def get_available_scenarios(project_root: Path):
     """Get list of available scenario directories."""
     scenarios = []
     for item in sorted(project_root.iterdir()):
-        if item.is_dir() and item.name.startswith(('0', '1')):
+        if item.is_dir() and item.name.startswith('scenario_'):
             main_py = item / "main.py"
             if main_py.exists():
                 scenarios.append(item.name)

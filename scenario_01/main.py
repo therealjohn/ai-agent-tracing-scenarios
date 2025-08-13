@@ -21,8 +21,8 @@ KEY = os.environ["API_CREDENTIAL_TOKEN"]
 MODEL = os.getenv("MODEL_NAME")
 
 # Initialize tracing and client
-init_tracing("scenario01")
-tracer = get_tracer("scenario01")
+init_tracing("scenario_01")
+tracer = get_tracer("scenario_01")
 client = ChatCompletionsClient(endpoint=ENDPOINT, credential=AzureKeyCredential(KEY))
 
 # Knowledge base

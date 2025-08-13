@@ -21,8 +21,8 @@ KEY = os.environ["API_CREDENTIAL_TOKEN"]
 MODEL = os.getenv("MODEL_NAME")
 
 # Initialize tracing
-init_tracing("scenario06")
-tracer = get_tracer("scenario06")
+init_tracing("scenario_05")
+tracer = get_tracer("scenario_05")
 client = ChatCompletionsClient(endpoint=ENDPOINT, credential=AzureKeyCredential(KEY))
 
 def parse_doc(doc: str, timeout_s=0.5) -> dict:
@@ -43,7 +43,7 @@ def parse_doc(doc: str, timeout_s=0.5) -> dict:
         span.set_attribute("sections_found", len(result["sections"]))
         return result
 
-@tracer.start_as_current_span("scenario_06")
+@tracer.start_as_current_span("scenario_05")
 def analyze(doc: str):
     current_span = trace.get_current_span()
     current_span.set_attribute("scenario.name", "tool_timeout_swallowed")
