@@ -44,21 +44,28 @@ def chat(user_input: str):
         
         add_gen_ai_event(current_span, "gen_ai.user.message", "user", user_input)
         
-        resp = client.complete(
-            model=MODEL,
-            messages=[
-                SystemMessage(SYSTEM_POLICY),
-                UserMessage(user_input)
-            ],
-        )
-        
-        content = resp.choices[0].message.content
-        # Handle both string and list content formats
-        result = content if isinstance(content, str) else (
-            content[0].text if hasattr(content[0], 'text') else str(content[0])
-        )
-        
-        add_choice_event(current_span, content)
+        try:
+            resp = client.complete(
+                model=MODEL,
+                messages=[
+                    SystemMessage(SYSTEM_POLICY),
+                    UserMessage(user_input)
+                ],
+            )
+            
+            content = resp.choices[0].message.content
+            # Handle both string and list content formats
+            result = content if isinstance(content, str) else (
+                content[0].text if hasattr(content[0], 'text') else str(content[0])
+            )
+            
+            add_choice_event(current_span, content)
+            
+        except Exception as e:
+            # Handle content filtering or other errors
+            current_span.set_attribute("error_type", type(e).__name__)
+            current_span.set_attribute("content_filtered", "content_filter" in str(e))
+            result = f"Request blocked due to content policy: {str(e)}"
         
         # Check if response potentially leaked system instructions
         leaked_keywords = ["contoso policybot", "never reveal", "system instructions"]

@@ -20,8 +20,9 @@ def main():
     ]
 
     response = client.complete(model=model, messages=messages)
-    text = response.choices[0].message.content[0].text
-    print(json.dumps({"summary": text.strip()}, indent=2))
+    content = response.choices[0].message.content
+    
+    print(json.dumps({"summary": content.strip()}, indent=2))
 
 if __name__ == "__main__":
     main()

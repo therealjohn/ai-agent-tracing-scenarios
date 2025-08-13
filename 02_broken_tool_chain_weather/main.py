@@ -6,7 +6,7 @@ from pathlib import Path
 
 from azure.ai.inference import ChatCompletionsClient
 from azure.ai.inference.models import (
-    SystemMessage, UserMessage,
+    SystemMessage, UserMessage, ToolMessage,
     ChatCompletionsToolDefinition, FunctionDefinition
 )
 from azure.core.credentials import AzureKeyCredential
@@ -76,29 +76,33 @@ def run(query: str):
                 if not m:
                     # silently skip (the bug) instead of handling properly
                     tool_span.set_attribute("bug_triggered", True)
+                    # Still need to provide a response to avoid API error
+                    tool_outputs.append({"tool_call_id": tc.id, "output": "Error: Unable to process city name"})
                     continue
                 result = fake_weather(m.group(1))
                 tool_outputs.append({"tool_call_id": tc.id, "output": result})
-        tool_span.set_attribute("successful_tool_calls", len(tool_outputs))
+        tool_span.set_attribute("successful_tool_calls", len([o for o in tool_outputs if "Error:" not in o["output"]]))
+        tool_span.set_attribute("failed_tool_calls", len([o for o in tool_outputs if "Error:" in o["output"]]))
 
     # Send tool results (maybe missing because of the bug)
+    # Add tool results as ToolMessage objects to the messages
+    messages_with_tools = [*messages, msg]
+    for tool_output in tool_outputs:
+        messages_with_tools.append(
+            ToolMessage(content=tool_output["output"], tool_call_id=tool_output["tool_call_id"])
+        )
+    
     follow = client.complete(
         model=MODEL,
-        messages=[*messages, msg],
-        tool_results=tool_outputs
+        messages=messages_with_tools
     )
     
     content = follow.choices[0].message.content
-    
-    # Handle both string and list content formats
-    text_content = content if isinstance(content, str) else (
-        content[0].text if hasattr(content[0], 'text') else str(content[0])
-    )
-    
+
     # Add choice event
     add_choice_event(current_span, content)
     
-    return text_content
+    return str(content[0])
 
 if __name__ == "__main__":
     print(run("What's the weather in New York?"))

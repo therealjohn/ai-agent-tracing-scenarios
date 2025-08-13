@@ -40,14 +40,10 @@ def main():
     add_gen_ai_event(current_span, "gen_ai.user.message", "user", query)
     
     # Intentionally low output tokens to trigger length truncation
-    resp = client.complete(model=MODEL, messages=messages, max_output_tokens=50)
+    resp = client.complete(model=MODEL, messages=messages, max_tokens=50)
     choice = resp.choices[0]
     
     content = choice.message.content
-    # Handle both string and list content formats
-    text = content if isinstance(content, str) else (
-        content[0].text if hasattr(content[0], 'text') else str(content[0])
-    )
     
     # Add choice event
     add_choice_event(current_span, content)
@@ -59,7 +55,7 @@ def main():
     
     return {
         "finish_reason": finish_reason,
-        "text": text
+        "text": str(content[0])
     }
 
 if __name__ == "__main__":

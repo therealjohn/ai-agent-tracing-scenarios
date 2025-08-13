@@ -85,11 +85,6 @@ def answer_question(topic: str):
     resp = llm(messages)
     content = resp.choices[0].message.content
     
-    # Handle content format
-    text_content = content if isinstance(content, str) else (
-        content[0].text if hasattr(content[0], 'text') else str(content[0])
-    )
-    
     # Add choice event
     add_choice_event(current_span, content)
     

@@ -60,8 +60,8 @@ def init_tracing(service_name: str = "ai-agent-scenarios"):
     AIInferenceInstrumentor().instrument()
     
     _IS_INIT = True
-    print(f"✓ Tracing initialized for service: {service_name}")
-    print("✓ AI Toolkit tracing viewer should be open to collect traces")
+    print(f"[OK] Tracing initialized for service: {service_name}")
+    print("[OK] AI Toolkit tracing viewer should be open to collect traces")
 
 def get_tracer(name: str):
     """Get a tracer instance for creating custom spans for business logic."""
