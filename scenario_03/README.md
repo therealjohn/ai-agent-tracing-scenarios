@@ -1,1 +1,1 @@
-Some queries take 4× longer. Find the likely cause using the traces.
+Some queries take longer. Find where using the traces.

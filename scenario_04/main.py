@@ -50,10 +50,7 @@ def main():
     # Log truncation information
     finish_reason = getattr(choice, "finish_reason", "unknown")
     
-    return {
-        "finish_reason": finish_reason,
-        "text": str(content)
-    }
+    return content
 
 if __name__ == "__main__":
     result = main()

@@ -45,10 +45,8 @@ def researcher(plan: str):
     # BUG: needless double-pass loop adds latency
     result = ""
     for i in range(2):  # should be 1
-        with tracer.start_span(f"research_pass_{i+1}") as pass_span:
-            pass_span.set_attribute("pass_number", i+1)
-            time.sleep(0.8)  # simulate IO
-            result = llm([SystemMessage("Researcher. Extract key facts only."), UserMessage(plan)])
+        time.sleep(1.5)  # simulate IO
+        result = llm([SystemMessage("Researcher. Extract key facts only."), UserMessage(plan)])
     
     return result
 

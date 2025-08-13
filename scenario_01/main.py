@@ -89,8 +89,8 @@ def answer_question(topic: str):
     add_choice_event(current_span, content)
     current_span.set_attribute("gen_ai.usage.total_tokens", resp.usage.total_tokens)
     
-    return {"use_kb": use_kb, "kb_snippet": kb_snippet, "answer": content}
+    return content
 
 if __name__ == "__main__":
     out = answer_question("pto_policy")
-    print(json.dumps(out, indent=2))
+    print(out)
