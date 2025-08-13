@@ -27,16 +27,12 @@ client = ChatCompletionsClient(endpoint=ENDPOINT, credential=AzureKeyCredential(
 def llm(messages):
     response = client.complete(model=MODEL, messages=messages)
     content = response.choices[0].message.content
-    
-    # Handle both string and list content formats
-    return content if isinstance(content, str) else (
-        content[0].text if hasattr(content[0], 'text') else str(content[0])
-    )
+
+    return str(content[0])
 
 @tracer.start_as_current_span("agent.planner")
 def planner(task: str):
     current_span = trace.get_current_span()
-    current_span.set_attribute("task", task)
     add_gen_ai_event(current_span, "gen_ai.user.message", "user", task)
     
     result = llm([SystemMessage("Planner. Output bullet plan only."), UserMessage(task)])
@@ -46,8 +42,6 @@ def planner(task: str):
 @tracer.start_as_current_span("agent.researcher")
 def researcher(plan: str):
     current_span = trace.get_current_span()
-    current_span.set_attribute("plan", plan)
-    current_span.set_attribute("bug.double_pass", True)
     add_gen_ai_event(current_span, "gen_ai.user.message", "user", plan)
     
     # BUG: needless double-pass loop adds latency
@@ -64,7 +58,6 @@ def researcher(plan: str):
 @tracer.start_as_current_span("agent.summarizer")
 def summarizer(facts: str):
     current_span = trace.get_current_span()
-    current_span.set_attribute("facts", facts)
     add_gen_ai_event(current_span, "gen_ai.user.message", "user", facts)
     
     result = llm([SystemMessage("Summarizer. 5 concise bullets."), UserMessage(facts)])
@@ -73,9 +66,6 @@ def summarizer(facts: str):
 
 @tracer.start_as_current_span("scenario_03")
 def main():
-    current_span = trace.get_current_span()
-    current_span.set_attribute("scenario.name", "slow_multi_step_reasoning")
-    
     task = "Compare two approaches to caching API responses."
     p = planner(task)
     r = researcher(p)

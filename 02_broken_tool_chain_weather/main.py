@@ -17,6 +17,7 @@ from opentelemetry import trace
 load_dotenv()
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 from _shared.tracing import add_choice_event, add_gen_ai_event, init_tracing, get_tracer
+import argparse
 
 # Configuration
 ENDPOINT = os.environ["MODEL_ENDPOINT"]
@@ -105,4 +106,9 @@ def run(query: str):
     return str(content[0])
 
 if __name__ == "__main__":
-    print(run("What's the weather in New York?"))
+    
+    parser = argparse.ArgumentParser(description="Get weather information for a city")
+    parser.add_argument("city", nargs="?", default="New York", help="City to get weather for (default: New York)")
+    args = parser.parse_args()
+    
+    print(run(f"What's the weather in {args.city}?"))

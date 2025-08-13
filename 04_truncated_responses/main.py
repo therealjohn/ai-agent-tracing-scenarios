@@ -27,8 +27,6 @@ client = ChatCompletionsClient(endpoint=ENDPOINT, credential=AzureKeyCredential(
 @tracer.start_as_current_span("scenario_04")
 def main():
     current_span = trace.get_current_span()
-    current_span.set_attribute("scenario.name", "truncated_responses")
-    current_span.set_attribute("max_output_tokens", 50)
     
     query = "Summarize the benefits of CI/CD and trunk-based development."
     messages = [
@@ -50,8 +48,6 @@ def main():
     
     # Log truncation information
     finish_reason = getattr(choice, "finish_reason", "unknown")
-    current_span.set_attribute("finish_reason", finish_reason)
-    current_span.set_attribute("response_truncated", finish_reason == "length")
     
     return {
         "finish_reason": finish_reason,

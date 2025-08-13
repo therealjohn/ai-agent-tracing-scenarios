@@ -1,1 +1,1 @@
-Summaries are getting cut off.
+Use the trace to identify the cause for summaries getting truncated.
