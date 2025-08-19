@@ -66,16 +66,35 @@ pip install -r requirements.txt
 
 ## Scenario Navigation
 
-This repository is organized with each scenario in its own Git branch. Here's how to navigate between scenarios:
+This repository is organized with each scenario in its own Git branch. For the complete interactive documentation and user study guide, visit the documentation site on the `docs` branch.
+
+### Quick Start with Documentation
+
+```bash
+# Switch to the docs branch to access the documentation site
+git checkout docs
+
+# Serve the documentation locally (requires Node.js and docsify-cli)
+npm install -g docsify-cli
+docsify serve docs --port 3000
+
+# Open http://localhost:3000 in your browser
+```
+
+The documentation site provides:
+- Interactive setup instructions
+- Step-by-step scenario guides
+- Tracing viewer tutorials
+- Troubleshooting help
 
 ### Available Scenarios
 
-- **Scenario 00**: Basic tracing setup (no shared dependencies)
-- **Scenario 01**: Intermediate tracing with shared utilities
-- **Scenario 02**: Advanced tracing patterns with shared utilities
-- **Scenario 03**: Multi-agent tracing with shared utilities
-- **Scenario 04**: Performance monitoring with shared utilities
-- **Scenario 05**: Production-ready tracing with shared utilities
+- **Scenario 01**: Basic tracing setup and foundations
+- **Scenario 02**: Function calling and tool usage tracing  
+- **Scenario 03**: Error handling and debugging with tracing
+- **Scenario 04**: Complex workflows and multi-agent interactions
+- **Scenario 05**: Performance monitoring and optimization
+- **Scenario 06**: Custom metrics and advanced tracing patterns
 
 ### Switching Between Scenarios
 
@@ -83,7 +102,7 @@ To work with a specific scenario:
 
 ```bash
 # Switch to a scenario branch
-git checkout scenario_00  # or scenario_01, scenario_02, etc.
+git checkout scenario_01  # or scenario_02, scenario_03, etc.
 
 # Verify you're on the correct branch
 git branch
@@ -97,16 +116,7 @@ ls
 **Main Branch** (`main`):
 - Contains only setup files: `README.md`, `requirements.txt`, `.env.sample`, `.gitignore`
 
-**Scenario 00** (`scenario_00`):
-```
-├── main.py                 # Scenario implementation
-├── README_scenario_00.md   # Scenario-specific instructions
-├── requirements.txt        # Dependencies
-├── .env.sample            # Environment template
-└── .gitignore             # Git ignore rules
-```
-
-**Scenarios 01-05** (`scenario_01` through `scenario_05`):
+**All Scenarios** (`scenario_01` through `scenario_06`):
 ```
 ├── main.py                 # Scenario implementation
 ├── README_scenario_XX.md   # Scenario-specific instructions
@@ -121,13 +131,13 @@ ls
 
 1. **Switch to the desired scenario branch**:
    ```bash
-   git checkout scenario_01  # Replace with your chosen scenario
+   git checkout scenario_02  # Replace with your chosen scenario
    ```
 
 2. **Read the scenario-specific instructions**:
    ```bash
    # View scenario details
-   cat README_scenario_01.md  # Replace with your scenario number
+   cat README_scenario_02.md  # Replace with your scenario number
    ```
 
 3. **Ensure your virtual environment is activated**:
