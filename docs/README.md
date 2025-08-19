@@ -1,25 +1,15 @@
 # AI Agent Tracing Scenarios
 
-This user study guides you through hands-on scenarios to learn AI agent tracing using the AI Toolkit's Tracing Viewer in VS Code.
-
 ## What is AI Tracing?
 
-AI tracing captures detailed execution information as your AI application runs, helping you:
+Understanding why your AI agent made specific decisions is crucial for debugging, but can be challenging due to:
 
-- **Debug Complex Workflows**: Track data flow through multi-step AI processes
-- **Monitor Performance**: Analyze response times, token usage, and costs
-- **Ensure Quality**: Validate AI behavior and catch issues early
-- **Audit Decisions**: Maintain records for compliance and accountability
+- **Complex execution paths** with many steps that vary based on input
+- **Lengthy inputs/outputs** requiring detailed inspection  
+- **Nested operations** where agents invoke tools that trigger other processes
 
-## Common Use Cases
-
-- **Multi-agent Systems**: Track interactions between AI agents
-- **RAG Applications**: Monitor retrieval, generation, and augmentation steps
-- **AI Pipelines**: Observe data flow through processing chains
-- **Production Monitoring**: Real-time monitoring of AI applications
+Tracing addresses these challenges by providing clear visibility into each step's inputs, outputs, and execution order.
 
 ## Study Overview
 
-You'll work through 6 progressive scenarios, each designed to teach specific tracing concepts. Each scenario includes a task to complete using the Tracing Viewer to analyze AI application behavior.
-
-**Time**: 2-3 hours total (20-30 minutes per scenario)
+You'll work through 6 progressive scenarios, each designed to evaluate the AI Toolkit Tracing Viewer. Each scenario includes a task to complete using the Tracing Viewer to analyze AI application behavior.
