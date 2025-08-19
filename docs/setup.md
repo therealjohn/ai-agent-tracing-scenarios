@@ -28,6 +28,9 @@ Before starting, install the following:
 git clone https://github.com/therealjohn/ai-agent-tracing-scenarios.git
 cd ai-agent-tracing-scenarios
 
+# Get all the branches
+git fetch --all
+
 # Create virtual environment
 python -m venv .venv
 
