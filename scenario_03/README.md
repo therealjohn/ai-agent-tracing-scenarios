@@ -1,1 +1,0 @@
-Some queries take longer. Find where using the traces.
