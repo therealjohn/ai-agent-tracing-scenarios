@@ -40,6 +40,16 @@ Before getting started, ensure you have the following installed:
 git clone https://github.com/therealjohn/ai-agent-tracing-scenarios.git
 cd ai-agent-tracing-scenarios
 
+# Fetch all remote branches and set up local tracking branches
+git fetch --all
+git checkout scenario_01
+git checkout scenario_02
+git checkout scenario_03
+git checkout scenario_04
+git checkout scenario_05
+git checkout scenario_06
+git checkout main
+
 # Create a virtual environment
 python -m venv .venv
 
@@ -66,26 +76,31 @@ pip install -r requirements.txt
 
 ## Scenario Navigation
 
-This repository is organized with each scenario in its own Git branch. For the complete interactive documentation and user study guide, visit the documentation site on the `docs` branch.
+This repository is organized with each scenario in its own Git branch. Each scenario provides hands-on experience with different aspects of AI agent tracing.
 
-### Quick Start with Documentation
+### Clone Repository with All Branches
 
 ```bash
-# Switch to the docs branch to access the documentation site
-git checkout docs
+# Clone the repository
+git clone https://github.com/therealjohn/ai-agent-tracing-scenarios.git
+cd ai-agent-tracing-scenarios
 
-# Serve the documentation locally (requires Node.js and docsify-cli)
-npm install -g docsify-cli
-docsify serve docs --port 3000
+# Fetch all remote branches
+git fetch --all
 
-# Open http://localhost:3000 in your browser
+# Create local tracking branches for all scenarios
+git checkout scenario_01
+git checkout scenario_02  
+git checkout scenario_03
+git checkout scenario_04
+git checkout scenario_05
+git checkout scenario_06
+
+# Return to main branch for setup
+git checkout main
 ```
 
-The documentation site provides:
-- Interactive setup instructions
-- Step-by-step scenario guides
-- Tracing viewer tutorials
-- Troubleshooting help
+Now you'll have all scenario branches available locally and can switch between them easily.
 
 ### Available Scenarios
 
