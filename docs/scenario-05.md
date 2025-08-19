@@ -1,12 +1,10 @@
 # Scenario 5: Performance Analysis
 
-Dive deep into performance monitoring and optimization using AI tracing data.
-
 ## Running This Scenario
 
 1. **Switch to the scenario branch:**
    ```bash
-   git checkout scenario_05
+   git checkout scenario_04
    ```
 
 2. **Verify the tracing viewer is running:**
@@ -26,14 +24,7 @@ Dive deep into performance monitoring and optimization using AI tracing data.
 
 ## Your Task
 
-Observe how the tracing viewer provides:
-- Detailed timing information for each operation
-- Token usage and cost tracking
-- Performance comparison across different approaches
-
-## Understanding the Code
-
-This scenario focuses on performance optimization scenarios, demonstrating how tracing data can guide performance improvements in AI agent applications.
+Inspect the Output of the trace. The summaries produced are being truncated. Inspect the trace details and try to identify why this might be happening.
 
 ## Next Steps
 

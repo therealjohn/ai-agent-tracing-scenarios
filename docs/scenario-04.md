@@ -1,7 +1,5 @@
 # Scenario 4: Complex Workflows
 
-Explore advanced AI tracing with multi-agent interactions and complex decision trees.
-
 ## Running This Scenario
 
 1. **Switch to the scenario branch:**
@@ -26,14 +24,7 @@ Explore advanced AI tracing with multi-agent interactions and complex decision t
 
 ## Your Task
 
-Observe how the tracing viewer handles:
-- Multi-agent interactions
-- Complex decision trees and branching logic
-- Performance bottlenecks in longer workflows
-
-## Understanding the Code
-
-This scenario demonstrates advanced agent workflows with multiple decision points and interactions, showing how tracing scales with complexity.
+Imagine that it's been reported that this code is reported to sometimes take longer. Use the trace to find the likely cause.
 
 ## Next Steps
 
