@@ -21,15 +21,11 @@ Learn to implement and visualize custom metrics in AI agent tracing.
 
 4. **Analyze the traces:**
    - Return to the Tracing Viewer in the AI Toolkit panel
-   - Explore the custom metrics and measurements
    - Complete the task below
 
 ## Your Task
 
-Observe how the tracing viewer displays:
-- Custom metrics and business logic measurements
-- Integration with standard OpenTelemetry metrics
-- Advanced filtering and analysis capabilities
+Observe why the document parsing appears to fail using the trace.
 
 ## Understanding the Code
 

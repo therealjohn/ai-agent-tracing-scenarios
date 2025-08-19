@@ -19,7 +19,6 @@
 
 4. **Analyze the traces:**
    - Return to the Tracing Viewer in the AI Toolkit panel
-   - Focus on performance metrics and timing data
    - Complete the task below
 
 ## Your Task

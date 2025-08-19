@@ -19,7 +19,6 @@
 
 4. **Analyze the traces:**
    - Return to the Tracing Viewer in the AI Toolkit panel
-   - Navigate through the complex interaction patterns
    - Complete the task below
 
 ## Your Task
