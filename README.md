@@ -134,7 +134,6 @@ ls
 **All Scenarios** (`scenario_01` through `scenario_06`):
 ```
 ├── main.py                 # Scenario implementation
-├── README_scenario_XX.md   # Scenario-specific instructions
 ├── _shared/               # Shared utilities and tracing code
 │   └── tracing.py         # Common tracing functions
 ├── requirements.txt        # Dependencies
@@ -150,10 +149,8 @@ ls
    ```
 
 2. **Read the scenario-specific instructions**:
-   ```bash
-   # View scenario details
-   cat README_scenario_02.md  # Replace with your scenario number
-   ```
+   
+   View the scenario instructions at 
 
 3. **Ensure your virtual environment is activated**:
    ```bash
@@ -167,29 +164,6 @@ ls
    ```bash
    python main.py
    ```
-
-## Development Workflow
-
-When working on scenarios:
-
-1. Always start from the appropriate scenario branch
-2. Make changes only to files in that branch
-3. Test your changes before switching scenarios
-4. Use `git status` to verify you're on the correct branch
-
-## Troubleshooting
-
-### Common Issues
-
-- **Import errors**: Ensure you're on the correct scenario branch and virtual environment is activated
-- **API errors**: Verify your `.env` file is properly configured with a valid token
-- **Missing files**: Confirm you're on the correct branch with `git branch`
-
-### Getting Help
-
-- Check the scenario-specific README file (`README_scenario_XX.md`)
-- Verify your Python environment setup
-- Ensure all dependencies are installed with `pip install -r requirements.txt`
 
 ## Contributing
 
