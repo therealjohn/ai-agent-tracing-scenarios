@@ -4,7 +4,7 @@
 
 1. **Switch to the scenario branch:**
    ```bash
-   git checkout scenario_02
+   git checkout scenario_03
    ```
 
 2. **Verify the tracing viewer is running:**

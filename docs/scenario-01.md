@@ -6,7 +6,7 @@ Use GitHub Copilot Chat in VS Code to set up tracing.
 
 1. **Switch to the scenario branch:**
    ```bash
-   git checkout scenario_00
+   git checkout scenario_01
    ```
 
 2. **Inspect the code in main.py**

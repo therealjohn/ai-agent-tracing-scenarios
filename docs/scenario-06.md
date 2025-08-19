@@ -6,7 +6,7 @@ Learn to implement and visualize custom metrics in AI agent tracing.
 
 1. **Switch to the scenario branch:**
    ```bash
-   git checkout scenario_05
+   git checkout scenario_06
    ```
 
 2. **Verify the tracing viewer is running:**
