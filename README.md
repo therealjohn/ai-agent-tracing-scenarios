@@ -102,15 +102,6 @@ git checkout main
 
 Now you'll have all scenario branches available locally and can switch between them easily.
 
-### Available Scenarios
-
-- **Scenario 01**: Basic tracing setup and foundations
-- **Scenario 02**: Function calling and tool usage tracing  
-- **Scenario 03**: Error handling and debugging with tracing
-- **Scenario 04**: Complex workflows and multi-agent interactions
-- **Scenario 05**: Performance monitoring and optimization
-- **Scenario 06**: Custom metrics and advanced tracing patterns
-
 ### Switching Between Scenarios
 
 To work with a specific scenario:
@@ -150,7 +141,7 @@ ls
 
 2. **Read the scenario-specific instructions**:
    
-   View the scenario instructions at 
+   View the scenario instructions at [https://therealjohn.github.io/ai-agent-tracing-scenarios](https://therealjohn.github.io/ai-agent-tracing-scenarios)
 
 3. **Ensure your virtual environment is activated**:
    ```bash
