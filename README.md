@@ -68,15 +68,6 @@ pip install -r requirements.txt
 
 This repository is organized with each scenario in its own Git branch. Here's how to navigate between scenarios:
 
-### Available Scenarios
-
-- **Scenario 00**: Basic tracing setup (no shared dependencies)
-- **Scenario 01**: Intermediate tracing with shared utilities
-- **Scenario 02**: Advanced tracing patterns with shared utilities
-- **Scenario 03**: Multi-agent tracing with shared utilities
-- **Scenario 04**: Performance monitoring with shared utilities
-- **Scenario 05**: Production-ready tracing with shared utilities
-
 ### Switching Between Scenarios
 
 To work with a specific scenario:
