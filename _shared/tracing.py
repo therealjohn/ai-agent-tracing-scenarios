@@ -42,7 +42,7 @@ def init_tracing(service_name: str = "ai-agent-scenarios"):
     # Configure OTLP exporter to send traces to AI Toolkit
     # AI Toolkit expects traces on http://localhost:4321/v1/traces
     otlp_exporter = OTLPSpanExporter(
-        endpoint="http://localhost:4321/v1/traces",
+        endpoint="http://localhost:4318/v1/traces",
         timeout=30  # Add timeout for better reliability
     )
     
