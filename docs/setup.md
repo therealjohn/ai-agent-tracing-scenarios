@@ -66,13 +66,6 @@ pip install -r requirements.txt
    API_CREDENTIAL_TOKEN=your_github_token_here
    ```
 
-### 3. Verify Setup
-
-```bash
-# Test environment
-python -c "import openai; print('Setup complete!')"
-```
-
 ## VS Code Configuration
 
 1. Open the repository folder in VS Code
