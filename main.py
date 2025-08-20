@@ -21,8 +21,8 @@ KEY = os.environ["API_CREDENTIAL_TOKEN"]
 MODEL = os.getenv("MODEL_NAME")
 
 # Initialize tracing and client
-init_tracing("scenario_01")
-tracer = get_tracer("scenario_01")
+init_tracing("scenario_02")
+tracer = get_tracer("scenario_02")
 client = ChatCompletionsClient(endpoint=ENDPOINT, credential=AzureKeyCredential(KEY))
 
 # Knowledge base
@@ -47,7 +47,7 @@ def retrieval(query: str) -> str:
     current_span.set_attribute("result_found", bool(result))
     return result
 
-@tracer.start_as_current_span("scenario_01")
+@tracer.start_as_current_span("scenario_02")
 def answer_question(topic: str):
     current_span = trace.get_current_span()
     current_span.set_attribute("question.topic", topic)
