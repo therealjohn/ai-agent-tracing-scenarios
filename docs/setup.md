@@ -50,7 +50,15 @@ pip install -r requirements.txt
 4. Generate a new classic token
 5. Copy the token
 6. Create `.env` file from template:
+   ```powershell
+   # Windows (PowerShell)
+   Copy-Item .env.sample .env
+   
+   # Or use copy command
+   copy .env.sample .env
+   ```
    ```bash
+   # macOS/Linux
    cp .env.sample .env
    ```
 7. Edit `.env` and add your token:
