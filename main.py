@@ -22,8 +22,8 @@ MODEL = os.getenv("MODEL_NAME")
 total_tokens = 0
 
 # Initialize tracing
-init_tracing("scenario_03")
-tracer = get_tracer("scenario_03")
+init_tracing("scenario_04")
+tracer = get_tracer("scenario_04")
 client = ChatCompletionsClient(endpoint=ENDPOINT, credential=AzureKeyCredential(KEY))
 
 def llm(messages):
@@ -56,7 +56,7 @@ def summarizer(facts: str):
 
     return result
 
-@tracer.start_as_current_span("scenario_03")
+@tracer.start_as_current_span("scenario_04")
 def main():
     global total_tokens
     total_tokens = 0
