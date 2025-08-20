@@ -25,8 +25,8 @@ KEY = os.environ["API_CREDENTIAL_TOKEN"]
 MODEL = os.getenv("MODEL_NAME")
 
 # Initialize tracing
-init_tracing("scenario02")
-tracer = get_tracer("scenario02")
+init_tracing("scenario03")
+tracer = get_tracer("scenario03")
 client = ChatCompletionsClient(endpoint=ENDPOINT, credential=AzureKeyCredential(KEY))
 
 # Define a simple tool (function) schema
@@ -45,7 +45,7 @@ weather_tool = ChatCompletionsToolDefinition(
 def fake_weather(city: str) -> str:
     return json.dumps({"city": city, "temp_c": 27})
 
-@tracer.start_as_current_span("scenario_02")
+@tracer.start_as_current_span("scenario_03")
 def run(query: str):
     current_span = trace.get_current_span()
     
